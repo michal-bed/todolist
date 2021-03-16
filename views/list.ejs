@@ -1,0 +1,46 @@
+<%- include("header") -%>
+
+  <div class="box" id="heading">
+    <h1> <%= listTitle %> </h1>
+  </div>
+
+  <div class="box">
+    <% for (let i=0; i<newListItems.length; i++) { %>
+      <% if (newListItems[i].initialized !== "initializationOfToDoListAlreadyCompleted") { %>
+        <form action="/delete" method="post">
+          <div class="item">
+            <input type="checkbox" name="checkbox" value="<%= newListItems[i]._id %>"
+                  onchange='confirmDelete(this.form)'>
+            <p><%=  newListItems[i].name  %></p>
+            <input class="confirmed" name="confirmed" type="hidden" value="">
+            <input class="listTitle" name="listTitle" type="hidden" value="<%= listTitle %>">
+          </div>
+        </form>
+      <% } %>
+    <% } %>
+
+      <form class="item" action="/" method="post">
+        <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+        <button type="submit" name="list" value="<%= listTitle %>">+</button>
+      </form>
+  </div>
+
+  <script>
+    confirmDelete = function(form)
+      {
+        setTimeout(() => 
+        {
+          if (window.confirm(`Are you sure you want to delete the checked item which says: "${document.querySelector("input:checked+p").textContent}"?`))
+          { 
+              document.querySelector("input:checked + p + input.confirmed").setAttribute("value", "true");         
+          }
+          else
+          {
+              document.querySelector("input:checked + p + input.confirmed").setAttribute("value", "false");
+          }
+          form.submit();
+        }, 500);
+      }
+  </script>
+
+<%- include("footer") -%>
