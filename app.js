@@ -35,8 +35,8 @@ app.use(express.static("public"));
 // const items = ["Buy Food", "Cook Food", "Eat Food"];
 // const workItems = [];
 const localDBAddress = "mongodb://localhost:27017/todolistDB";
-// ?retryWrites=true&w=majority
-const atlasDBAddress = `mongodb+srv://michalb:${process.env.ATLAS_DB_PASSWORD}@cluster0.nemyk.mongodb.net/todolistDB`;
+//  
+const atlasDBAddress = `mongodb+srv://michalb:${process.env.ATLAS_DB_PASSWORD}@cluster0.nemyk.mongodb.net/todolistDB?retryWrites=true&w=majority`;
 
 mongoose.connect(atlasDBAddress, { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false })
                 .then(() => console.log("Connected with the database server"))
