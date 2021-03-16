@@ -38,7 +38,9 @@ const localDBAddress = "mongodb://localhost:27017/todolistDB";
 // ?retryWrites=true&w=majority
 const atlasDBAddress = `mongodb+srv://michalb:${process.env.ATLAS_DB_PASSWORD}@cluster0.nemyk.mongodb.net/todolistDB`;
 
-mongoose.connect(atlasDBAddress, { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false });
+mongoose.connect(atlasDBAddress, { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false })
+                .then(() => console.log("Connected with the database server"))
+                .catch((err) => console.log("Failed to connect with the database server:", err));
 
 const itemSchema = new Schema(
     {
