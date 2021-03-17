@@ -351,8 +351,9 @@ app.post("/delete",
 
         // res.redirect("/");
         }
-        else if(confirmed)
+        else if(confirmed === "true")
         {
+            console.log(`confirmed: ${confirmed}, about to remove item from list ${listTitle}`)
             List.findOneAndUpdate({ listTitle: listTitle }, 
                                 { $pull: { items: { _id: checkedItemId }}},
                 function(err, list)
@@ -363,11 +364,17 @@ app.post("/delete",
                     }
                     else if (list)
                     {
+                        console.log(`Removed item from the list ${list.listTitle}`);
+                        console.log();
                         res.redirect("/" + listTitle);
                     }
                 }
                                 
             );
+        }
+        else
+        {
+            res.redirect("/" + listTitle);
         }
     }
 );
