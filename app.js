@@ -351,7 +351,7 @@ app.post("/delete",
 
         // res.redirect("/");
         }
-        else
+        else if(confirmed)
         {
             List.findOneAndUpdate({ listTitle: listTitle }, 
                                 { $pull: { items: { _id: checkedItemId }}},
@@ -361,7 +361,7 @@ app.post("/delete",
                     {
                         console.log(err);
                     }
-                    else if (list && confirmed)
+                    else if (list)
                     {
                         res.redirect("/" + listTitle);
                     }
