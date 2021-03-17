@@ -10,10 +10,8 @@ exports.getDate = function() {
     month: "long"
   };
 
-  // return today.toLocaleDateString("en-US", options);
-  return today.toLocaleDateString("pl-PL", options);
-
-
+  return today.toLocaleDateString("en-US", options);
+  // return today.toLocaleDateString("pl-PL", options);
 };
 
 exports.getDay = function () {
