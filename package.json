@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node --icu-data-dir=. app.js",
+    "start": "cross-env NODE_ICU_DATA=. node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
